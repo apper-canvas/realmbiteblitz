@@ -80,10 +80,6 @@ function Home({ activeTab, setActiveTab }) {
           isPromoted: true
         },
         {
-          discount: "30% OFF on first order",
-          isPromoted: true
-        },
-        {
           id: 6,
           name: "Noodle House",
           image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
