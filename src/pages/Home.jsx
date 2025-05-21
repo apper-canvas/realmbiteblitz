@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { getIcon } from '../utils/iconUtils';
-function Home({ activeTab, setActiveTab }) {
 
-const Home = () => {
-      <HeroSection activeTab={activeTab} setActiveTab={setActiveTab} />
+function Home({ activeTab, setActiveTab }) {
+  // Current location state
+  const [currentLocation, setCurrentLocation] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   
   // Icon components
@@ -72,10 +72,14 @@ const Home = () => {
           id: 5,
           name: "Taco Fiesta",
           image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-      <div className="mt-8 mb-20">
-        <MainFeature activeTab={activeTab} setActiveTab={setActiveTab} />
-      </div>   
+          cuisine: ["Mexican", "Latin American"],
+          rating: 4.3,
+          deliveryTime: 30,
           priceRange: "$$",
+          discount: "30% OFF on first order",
+          isPromoted: true
+        },
+        {
           discount: "30% OFF on first order",
           isPromoted: true
         },
@@ -167,6 +171,10 @@ const Home = () => {
   
   return (
     <div>
+      <div className="mt-8 mb-20">
+        <MainFeature activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
+      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary-light to-primary overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')] opacity-20 bg-cover bg-center"></div>
@@ -220,7 +228,7 @@ const Home = () => {
       {/* Main Feature Section */}
       <section className="py-12 bg-surface-50 dark:bg-surface-900" id="main-feature">
         <div className="container mx-auto px-4">
-          <MainFeature />
+          <MainFeature activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </section>
       
@@ -367,6 +375,5 @@ const Home = () => {
       </section>
     </div>
   );
-};
-
+}
 export default Home;
