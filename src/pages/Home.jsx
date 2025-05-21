@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { getIcon } from '../utils/iconUtils';
+import MainFeature from '../components/MainFeature';
 
 function Home({ activeTab, setActiveTab }) {
   // Current location state
@@ -223,9 +224,6 @@ function Home({ activeTab, setActiveTab }) {
       
       {/* Main Feature Section */}
       <section className="py-12 bg-surface-50 dark:bg-surface-900" id="main-feature">
-        <div className="container mx-auto px-4">
-          <MainFeature activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
       </section>
       
       {/* Restaurants Section */}
