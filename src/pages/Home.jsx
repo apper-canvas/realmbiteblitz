@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { getIcon } from '../utils/iconUtils';
-import MainFeature from '../components/MainFeature';
+function Home({ activeTab, setActiveTab }) {
 
 const Home = () => {
-  const [currentLocation, setCurrentLocation] = useState('');
+      <HeroSection activeTab={activeTab} setActiveTab={setActiveTab} />
   const [isLoading, setIsLoading] = useState(true);
   
   // Icon components
@@ -72,9 +72,9 @@ const Home = () => {
           id: 5,
           name: "Taco Fiesta",
           image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-          cuisine: ["Mexican", "Tacos"],
-          rating: 4.3,
-          deliveryTime: 30,
+      <div className="mt-8 mb-20">
+        <MainFeature activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>   
           priceRange: "$$",
           discount: "30% OFF on first order",
           isPromoted: true

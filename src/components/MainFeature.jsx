@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { getIcon } from '../utils/iconUtils';
 
-const MainFeature = () => {
-  const [activeTab, setActiveTab] = useState('search');
-  const [searchQuery, setSearchQuery] = useState('');
+const MainFeature = ({ activeTab, setActiveTab }) => {
+ const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [currentOrder, setCurrentOrder] = useState(null);
@@ -536,79 +535,13 @@ const MainFeature = () => {
     <div>
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold mb-8 text-center">Order Food in 3 Easy Steps</h2>
-        
-        {/* Tabs */}
-        <div className="flex justify-center mb-8 border-b border-surface-200 dark:border-surface-700">
-          <button 
-            className={`px-6 py-3 font-medium transition-colors relative ${
-              activeTab === 'search' 
-                ? 'text-primary' 
-                : 'text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-surface-100'
-            }`}
-            onClick={() => setActiveTab('search')}
-          >
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-surface-100 dark:bg-surface-700 flex items-center justify-center mr-2">
-                <SearchIcon className="w-4 h-4" />
-              </div>
-              <span>Search</span>
-            </div>
-            {activeTab === 'search' && (
-              <motion.div 
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              />
-            )}
-          </button>
-          
-          <button 
-            className={`px-6 py-3 font-medium transition-colors relative ${
-              activeTab === 'cart' 
-                ? 'text-primary' 
-                : 'text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-surface-100'
-            }`}
-            onClick={() => setActiveTab('cart')}
-          >
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-surface-100 dark:bg-surface-700 flex items-center justify-center mr-2 relative">
-                <ShoppingBagIcon className="w-4 h-4" />
-                {cartItems.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center text-white text-xs">
-                    {cartItems.length}
-                  </span>
-                )}
-              </div>
-              <span>Cart</span>
-            </div>
-            {activeTab === 'cart' && (
-              <motion.div 
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              />
-            )}
-          </button>
-          
-          <button 
-            className={`px-6 py-3 font-medium transition-colors relative ${
-              activeTab === 'tracking' 
-                ? 'text-primary' 
-                : 'text-surface-600 dark:text-surface-400 hover:text-surface-900 dark:hover:text-surface-100'
-            }`}
-            onClick={() => setActiveTab('tracking')}
-          >
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-surface-100 dark:bg-surface-700 flex items-center justify-center mr-2">
-                <TruckIcon className="w-4 h-4" />
-              </div>
-              <span>Tracking</span>
-            </div>
-            {activeTab === 'tracking' && (
-              <motion.div 
-                layoutId="activeTab"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-              />
-            )}
-          </button>
+
+        {/* Feature description text */}
+        <div className="text-center mb-8">
+          <p className="text-surface-600 dark:text-surface-400 max-w-xl mx-auto">
+            Browse restaurants, add items to your cart, and track your order - all from the 
+            navigation at the bottom of the screen. Simply tap the icons to switch between features.
+          </p>
         </div>
         
         {/* Tab Content */}

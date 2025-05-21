@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
+    const [activeFeatureTab, setActiveFeatureTab] = useState('search');
     // Check for saved theme preference or use system preference
     if (localStorage.getItem('darkMode') !== null) {
       return localStorage.getItem('darkMode') === 'true';
@@ -162,13 +163,70 @@ function App() {
     );
   };
 
+  // Bottom Navigation component
+  const BottomNavigation = () => {
+    const SearchIcon = getIcon('search');
+    const ShoppingBagIcon = getIcon('shopping-bag');
+    const TruckIcon = getIcon('truck');
+    
+    return (
+      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-surface-900 border-t border-surface-200 dark:border-surface-800 z-10">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center py-2">
+            <button 
+              className={`flex flex-col items-center justify-center px-5 py-2 rounded-lg transition-colors ${
+                activeFeatureTab === 'search' 
+                  ? 'text-primary bg-surface-100 dark:bg-surface-800' 
+                  : 'text-surface-600 dark:text-surface-400'
+              }`}
+              onClick={() => setActiveFeatureTab('search')}
+            >
+              <div className="w-6 h-6 flex items-center justify-center mb-1">
+                <SearchIcon className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-medium">Search</span>
+            </button>
+            
+            <button 
+              className={`flex flex-col items-center justify-center px-5 py-2 rounded-lg transition-colors mx-4 ${
+                activeFeatureTab === 'cart' 
+                  ? 'text-primary bg-surface-100 dark:bg-surface-800' 
+                  : 'text-surface-600 dark:text-surface-400'
+              }`}
+              onClick={() => setActiveFeatureTab('cart')}
+            >
+              <div className="w-6 h-6 flex items-center justify-center mb-1 relative">
+                <ShoppingBagIcon className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-medium">Cart</span>
+            </button>
+            
+            <button 
+              className={`flex flex-col items-center justify-center px-5 py-2 rounded-lg transition-colors ${
+                activeFeatureTab === 'tracking' 
+                  ? 'text-primary bg-surface-100 dark:bg-surface-800' 
+                  : 'text-surface-600 dark:text-surface-400'
+              }`}
+              onClick={() => setActiveFeatureTab('tracking')}
+            >
+              <div className="w-6 h-6 flex items-center justify-center mb-1">
+                <TruckIcon className="w-5 h-5" />
+              </div>
+              <span className="text-xs font-medium">Tracking</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pb-16">
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home activeTab={activeFeatureTab} setActiveTab={setActiveFeatureTab} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
@@ -188,6 +246,7 @@ function App() {
         theme={darkMode ? "dark" : "light"}
         toastClassName="rounded-lg"
       />
+      <BottomNavigation />
     </div>
   );
 }
