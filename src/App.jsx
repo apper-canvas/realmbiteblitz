@@ -7,8 +7,9 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 
 function App() {
+  const [activeFeatureTab, setActiveFeatureTab] = useState('search');
   const [darkMode, setDarkMode] = useState(() => {
-    const [activeFeatureTab, setActiveFeatureTab] = useState('search');
+    
     // Check for saved theme preference or use system preference
     if (localStorage.getItem('darkMode') !== null) {
       return localStorage.getItem('darkMode') === 'true';
